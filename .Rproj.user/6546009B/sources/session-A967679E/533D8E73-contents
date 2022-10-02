@@ -1,19 +1,69 @@
 ---
-title: "Practical Machine L"
+title: "Algorithm training on Excercise Data"
 output: html_notebook
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+# Introduction
+For this project, I was asked to train a Machine Learning algorithm to identify the type of excercise being done using data from various wearable sensors. 
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+# Exploratory Data Analysis
+We begin by loading the data and the necessary libraries and setting a seed to allow for reproducibility:
 
 ```{r}
-plot(cars)
+training <- read.csv("pml-training.csv")
+testing <- read.csv("pml-testing.csv")
+library(caret); library(ggplot2); library(janitor)
+set.seed(24051998)
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+We can see that there are some unnecesary variables , we proceed by cleansing both the training and testing data sets:
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+```{r}
+unn_vars <- c("X","user_name","raw_timestamp_part_1","raw_timestamp_part_2","cvtd_timestamp","problem_id")
+training <- training[,-which(names(training) %in% unn_vars)]
+testing <- testing[,-which(names(testing) %in% unn_vars)]
+training <- training[,-grep("^var|^std|^avg|^kurtosis|^skewness|^amplitude|^max|^min",names(training))]
+testing <- testing[,-grep("^var|^std|^avg|^kurtosis|^skewness|^amplitude|^max|^min",names(testing))]
+```
 
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+We factorize the *new_window* and the *classe* variables:
 
+```{r}
+training$new_window <- as.factor(training$new_window)
+training$classe <- as.factor(training$classe)
+testing$new_window <- as.factor(testing$new_window)
+```
+
+The structure of the data:
+
+```{r}
+head(training)
+```
+```{r}
+str(training)
+```
+
+The unique values to be predicted are:
+
+```{r}
+unique(training$classe)
+```
+
+As we can see after the cleansing, the training data is comprised of 55 variables and 19622 observations.
+
+# Model Fitting
+In this project we will try to fit 5 different models and validate/combine them to reach a good enough accuracy. The models we will use are:
+
+* Random Forests
+* Linear Discriminant Analysis
+* Naive Bayes
+* Boosting with Trees
+* Lasso
+
+## Random Forests
+We begin by fitting the model:
+
+```{r}
+model_rf <- train(classe ~ ., model = "rf", data = training)
+model_rf$finalModel
+```

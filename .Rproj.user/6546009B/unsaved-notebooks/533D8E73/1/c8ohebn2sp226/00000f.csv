@@ -1,0 +1,5 @@
+"0","unn_vars <- c(""X"",""user_name"",""raw_timestamp_part_1"",""raw_timestamp_part_2"",""cvtd_timestamp"",""problem_id"")"
+"0","training <- training[,-which(names(training) %in% unn_vars)]"
+"0","testing <- testing[,-which(names(testing) %in% unn_vars)]"
+"0","training <- training[,-grep(""^var|^std|^avg|^kurtosis|^skewness|^amplitude|^max|^min"",names(training))]"
+"0","testing <- testing[,-grep(""^var|^std|^avg|^kurtosis|^skewness|^amplitude|^max|^min"",names(testing))]"

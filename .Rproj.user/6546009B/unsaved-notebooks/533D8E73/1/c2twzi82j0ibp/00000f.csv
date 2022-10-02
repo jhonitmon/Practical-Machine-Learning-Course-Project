@@ -1,0 +1,4 @@
+"0","training <- read.csv(""pml-training.csv"")"
+"0","testing <- read.csv(""pml-testing.csv"")"
+"0","library(caret); library(ggplot2); library(janitor)"
+"0","set.seed(24051998)"
