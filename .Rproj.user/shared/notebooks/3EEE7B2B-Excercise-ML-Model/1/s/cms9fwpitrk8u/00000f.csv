@@ -1,0 +1,6 @@
+"0","training$new_window <- as.factor(training$new_window)"
+"0","training$classe <- as.factor(training$classe)"
+"0","testing$new_window <- as.factor(testing$new_window)"
+"0","inTrain <- createDataPartition(training$classe, p = 0.7, list = F)"
+"0","training <- training[inTrain,]"
+"0","validation <- training[-inTrain,]"

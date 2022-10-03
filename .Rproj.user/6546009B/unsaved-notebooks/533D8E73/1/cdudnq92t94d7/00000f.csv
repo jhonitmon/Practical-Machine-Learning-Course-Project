@@ -1,1 +1,0 @@
-"0","model_rf <- train(classe ~ ., model = ""rf"", data = training)"

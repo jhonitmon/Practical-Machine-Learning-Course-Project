@@ -1,11 +1,11 @@
 {
     "id": "533D8E73",
-    "path": null,
-    "project_path": null,
+    "path": "~/Documents/R Projects/Practical Machine Learning Course Project/Excercise-ML-Model.Rmd",
+    "project_path": "Excercise-ML-Model.Rmd",
     "type": "r_markdown",
-    "hash": "0",
+    "hash": "1912213045",
     "contents": "",
-    "dirty": true,
+    "dirty": false,
     "created": 1664640330342.0,
     "source_on_save": false,
     "relative_order": 1,
@@ -14,15 +14,15 @@
         "chunk_output_type": "inline",
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "69,0",
-        "scrollLine": "50"
+        "cursorPosition": "16,66",
+        "scrollLine": "4"
     },
     "folds": "",
-    "lastKnownWriteTime": 0,
-    "encoding": "",
+    "lastKnownWriteTime": 1664746388,
+    "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1664704871462,
+    "last_content_update": 1664746388907,
     "read_only": false,
     "read_only_alternatives": []
 }
